@@ -1,0 +1,7 @@
+:host: localhost
+:port: 8080
+:project_root: ./blaggard/spec/resources
+:git_path: /usr/bin/git
+:upload_pack: true
+:receive_pack: true
+:use_acl: true

@@ -1,0 +1,55 @@
+#!/usr/bin/env ruby
+libdir = File.absolute_path( File.join( File.dirname(__FILE__), '../lib' ) )
+$LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
+
+require 'blaggard'
+require 'thor'
+
+class BlaggardCLI < Thor
+  include Blaggard
+  desc "config <repo> <config_file>", "add a YAML config file to the repository"
+  def config(repo, config)
+    repo = File.absolute_path(repo)
+    if Dir.entries(repo).include? ".git"
+      repo = "#{repo}/.git"
+    end
+    meta = Blaggard::GroupConfig.new(repo)
+    begin
+      data = YAML.load(File.read(config))
+    rescue
+      raise Blaggard::GroupConfigError, "#{config} not a valid YAML file"
+    end
+    data.each do |group_name, value|
+      unless value[:read].instance_of?(Array) && value[:write].instance_of?(Array)
+        raise Blaggard::GroupConfigError, "#{group_name} not a valid group structure. Groups must include :read: [] and :write: []"
+      end
+    end
+    meta.groups = data
+    meta.write_to_git
+    puts meta.read_from_git
+  end
+
+  desc "start [config.yml]", "starts the blaggard server. Optionally pass in a config file. If you don't it will run on localhost:8080"
+  def start(config = nil)
+    require 'rack'
+    if config
+      conf_data = YAML.load( File.read(config) )
+    else
+      conf_data = YAML.load( File.read(File.absolute_path("config.yml")))
+    end
+    puts "Starting server at project root: #{conf_data[:project_root]}"
+    app = Blaggard::App.new(conf_data)
+
+    protected_app = Rack::Auth::Basic.new(app) do |username, password|
+      # make call to LDAP to authenticate
+      true
+    end
+
+    pretty_protected_app = Rack::ShowStatus.new(Rack::ShowExceptions.new(protected_app))
+
+    Rack::Server.start :app => pretty_protected_app,
+                       :Port => app.config[:port] || 8080,
+                       :Host => app.config[:host] || 'localhost'
+  end
+end
+BlaggardCLI.start(ARGV)

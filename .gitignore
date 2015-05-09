@@ -1,0 +1,5 @@
+coverage/
+vendor/bundle
+.idea
+*.yml
+.bundle
