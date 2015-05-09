@@ -11,7 +11,7 @@ module Blaggard
     end
 
     def raw_refs
-      @raw_refs ||= @git.exec(%W(#{@service} --stateless-rpc --advertise-refs #{@repo_path})).split("\n")
+      @raw_refs ||= @git.execute(%W(#{@service} --stateless-rpc --advertise-refs #{@repo_path})).split("\n")
       @first_ref_line ||= @raw_refs.first + "\n" # head_ref\0capabilities
       @pk_end ||= @raw_refs.last
       @raw_refs

@@ -4,4 +4,6 @@
 :git_path: /usr/bin/git
 :upload_pack: true
 :receive_pack: true
+:base_url: http://auth_server.com/api
+:group_resource: users_groups
 :use_acl: true

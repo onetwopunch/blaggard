@@ -13,7 +13,6 @@ require 'blaggard/advertisement'
 require 'blaggard/auth'
 require 'blaggard/bundle'
 require 'blaggard/group_finder'
-require 'blaggard/chipcode_log'
 
 
 module Blaggard

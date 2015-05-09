@@ -46,11 +46,9 @@ module Blaggard
       @git = get_git(path)
       return render_not_found unless git.valid_repo?
 
-      if @config[:chipcode]
-        identifier = env['TOKEN'] || env['REMOTE_USER']
-        @groups = Blaggard::GroupFinder.new(@config[:chipcode]).find(identifier) if @config[:use_acl]
-        Blaggard::ChipcodeLog.new(@config[:chipcode], env).execute if @rpc == 'upload-pack'
-      end
+
+      identifier = env['REMOTE_USER']
+      @groups = Blaggard::GroupFinder.new(@config).find(identifier) if @config[:use_acl]
 
       self.method(cmd).call()
     end

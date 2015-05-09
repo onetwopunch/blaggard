@@ -3,8 +3,16 @@ require 'json'
 module Blaggard
   class GroupFinder
     def initialize(config)
-      resource = 'api/v3/users_groups'
-      @url = "#{config[:base_uri]}/#{resource}/:id?private_token=#{config[:auth_key]}"
+      # Make your base url and resource something like:
+      #
+      #   https://example.com/api/v1/users_groups/user1
+      #
+      # Ideally this should bring down a list of strings that
+      # will correspond to the group keys in the repo config.
+      # These will be the groups that user is a part of. The
+      # User is identified by their username over http auth
+      # ie. the REMOTE_USER header.
+      @url = "#{config[:base_url]}/#{config[:group_resource]}/:id"
     end
 
     def find(identifier)

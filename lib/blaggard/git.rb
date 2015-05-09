@@ -71,7 +71,7 @@ module Blaggard
         return false unless Dir.entries(repo).include?('.git')
       end
 
-      match
+      !!match
     end
 
     def update_server_info

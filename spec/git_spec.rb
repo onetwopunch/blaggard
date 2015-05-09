@@ -18,6 +18,6 @@ describe Blaggard::Git do
   end
 
   it 'should validate the git-ness of a directory' do
-    expect(@git.is_valid_git_dir?).to eq(true)
+    expect(@git.valid_repo?).to eq(true)
   end
 end
