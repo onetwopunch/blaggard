@@ -4,7 +4,7 @@
 
 This project is a fork of [Grack](https://github.com/schacon/grack). Please refer to documentation and license on grack's README. The name came from the acronym **B**ranch **L**evel **A**ccess **C**ontrol for **G**it which obviously expands into Blaggard since everyone wants to be a pirate! Based on the [git protocol technical documentation](https://github.com/git/git/blob/master/Documentation/technical/http-protocol.txt), git servers have a state called 'Advertisement'. This is where the git server advertises what refs it has available. We can reliably hijack and reconstruct this advertisement to only allow certain users to view certain refs based on a configuration file.
 
-I have made the configuration very open
+I have made the configuration very open to allow configuration file input as YAML and any arbitrary REST endpoint as the mapping from config groups to individual users. I learn best by example, so I have one below.
 
 ## Blaggard is currently in BETA and accepting pull requests, feature requests, and issues
 
