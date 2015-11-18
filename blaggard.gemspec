@@ -1,9 +1,9 @@
 Gem::Specification.new do |s|
   s.name = 'blaggard'
-  s.version = '1.0.0'
+  s.version = '1.0.1'
   s.date = '2013-06-02'
   s.summary = "This is a fork of Grack that adds Branch Level Access control and LDAP Authentication"
-  s.description = "This is a fork of Grack that adds Branch Level Access control and LDAP Authentication. This was designed to be used in conjuction with Qualcomm's ChipCode web application"
+  s.description = "This is a fork of Grack that adds Branch Level Access control and LDAP Authentication"
   s.authors = ['Scott Chacon', 'Dawa Ometto', 'Ryan Canty']
   s.email = 'jrcanty@gmail.com'
   s.files = `git ls-files`.split("\n")
