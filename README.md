@@ -22,15 +22,17 @@ To run as an executable:
 
 To run as a mounted bundle in routes.rb of another Rack application:
 
-    mount Blaggard::Bundle.new({
-	    git_path:     /bin/git,
-	    project_root: path/to/repos,
-	    upload_pack:  true,
-	    receive_pack: true,
-	    use_acl: true,
-      base_url: "https://my-name-server",
-      group_resource: "blaggard_groups"
-	  }), at: '/'
+```
+mount Blaggard::Bundle.new({
+  git_path:     /bin/git,
+  project_root: path/to/repos,
+  upload_pack:  true,
+  receive_pack: true,
+  use_acl: true,
+  base_url: "https://my-name-server",
+  group_resource: "blaggard_groups"
+}), at: '/'
+```
 
 ## Config
 
