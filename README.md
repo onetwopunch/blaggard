@@ -1,5 +1,8 @@
-#<div style='text-align:center'> Blaggard</div>
-### <div style='text-align:center'> A Ruby/Rack Git Smart-HTTP Server Handler that implements a branch-level access control layer</div>
+# Blaggard
+
+# NOTE: This project is no longer maintained. Use at your own risk.
+
+### A Ruby/Rack Git Smart-HTTP Server Handler that implements a branch-level access control layer
 ========================================
 
 This project is a fork of [Grack](https://github.com/schacon/grack). Please refer to documentation and license on grack's README. The name came from the acronym **B**ranch **L**evel **A**ccess **C**ontrol for **G**it which obviously expands into Blaggard since everyone wants to be a pirate! Based on the [git protocol technical documentation](https://github.com/git/git/blob/master/Documentation/technical/http-protocol.txt), git servers have a state called 'Advertisement'. This is where the git server advertises what refs it has available. We can reliably hijack and reconstruct this advertisement to only allow certain users to view certain refs based on a configuration file.
